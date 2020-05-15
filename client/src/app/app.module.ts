@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// Form handling module
+import { FormsModule } from '@angular/forms';
 
 // Importing Material Design Library
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -57,7 +59,8 @@ import { TeacherLogComponent } from './teacher-log/teacher-log.component';
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
-    MDBBootstrapModule.forRoot()    
+    MDBBootstrapModule.forRoot(),
+    FormsModule   
   
   
   

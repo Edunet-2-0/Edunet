@@ -1,34 +1,58 @@
 <!-- Default form login -->
-<form class="text-center border border-light p-5">
+<form class="text-center border border-light p-5"
+  #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate
+  >
 
   <p class="h4 mb-4">Sign in</p>
 
   <!-- Email -->
-  <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+  <input required [(ngModel)]="user.email" name="email"
+  type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail"
+  >
 
   <!-- Password -->
-  <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+  <input required [(ngModel)]="user.password" name="password" 
+  type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" 
+  >
 
+  <!-- Role -->
+  <!-- Default checked -->
+  <div class="custom-control custom-radio">
+    <input [(ngModel)]="user.role" name="role" 
+    type="radio" class="custom-control-input" id="studentRadioButton"  checked mdbInput
+    >
+    <label class="custom-control-label" for="studentRadioButton">Student</label>
+  </div>
+
+  <!-- Default unchecked -->
+  <div class="custom-control custom-radio">
+    <input 
+    type="radio" class="custom-control-input" id="teacherRadioButton"  mdbInput [(ngModel)]="user.role" name="role"
+    >
+    <label class="custom-control-label" for="teacherRadioButton">Teacher</label>
+  </div>
+
+<!-- 
   <div class="d-flex justify-content-around">
     <div>
-      <!-- Remember me -->
       <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
     </div>
     <div>
-      <!-- Forgot password -->
       <a href="">Forgot password?</a>
     </div>
   </div>
+-->
 
-  <!-- Sign in button -->
-  <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
+<!-- Sign in button -->
+<button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
 
-  <!-- Register -->
-  <p>Not a member?
-    <a href="">Register</a>
-  </p>
+<!-- Register -->
+<p>Not a member?
+  <a href="">Register</a>
+</p>
 
-  <!-- Social login -->
+<!-- Social login -->
+<!--
   <p>or sign in with:</p>
 
   <a type="button" class="light-blue-text mx-2">
@@ -43,6 +67,15 @@
   <a type="button" class="light-blue-text mx-2">
     <mdb-icon fab icon="github"></mdb-icon>
   </a>
+-->
 
 </form>
 <!-- Default form login -->
+
+<p>FORM DATA</p>
+<p>EMAIL : {{ user.email }} ; {{ user.email }}</p>
+<p>PASS : {{ user.password }} ; {{ user.password }}</p>
+<p>Role : {{ user.role }} ; {{ user.role }}</p>
+<br>
+<p>FORM VALID : {{ f.valid }}</p>
+<p>FORM_DATA : {{ f.value | json }}</p>
