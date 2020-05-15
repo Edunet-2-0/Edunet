@@ -3,36 +3,35 @@
   #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate
   >
 
-  <p class="h4 mb-4">Sign in</p>
+  <p class="h4 mb-4">Login</p>
 
   <!-- Email -->
-  <input required [(ngModel)]="user.email" name="email"
-  type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail"
+  <input name="email" type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail"
+         [(ngModel)]="user.email" required
   >
 
   <!-- Password -->
-  <input required [(ngModel)]="user.password" name="password" 
-  type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" 
+  <input name="password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password"
+         [(ngModel)]="user.password" required
   >
 
   <!-- Role -->
-  <!-- Default checked -->
-  <div class="custom-control custom-radio">
-    <input [(ngModel)]="user.role" name="role" 
-    type="radio" class="custom-control-input" id="studentRadioButton"  checked mdbInput
+  <div *ngFor="let role of roles; let idx = index"
+    class="custom-control custom-radio">
+    <input name="role" type="radio" class="custom-control-input"
+           id="{{ role }}RadioButton"
+           [checked]="idx === 0"
+           [value]="role"
+           (change)="onSelectionChange(role)"
+           mdbInput
     >
-    <label class="custom-control-label" for="studentRadioButton">Student</label>
+    <label class="custom-control-label"
+           for="{{ role }}RadioButton">
+          {{ role }}
+    </label>
   </div>
 
-  <!-- Default unchecked -->
-  <div class="custom-control custom-radio">
-    <input 
-    type="radio" class="custom-control-input" id="teacherRadioButton"  mdbInput [(ngModel)]="user.role" name="role"
-    >
-    <label class="custom-control-label" for="teacherRadioButton">Teacher</label>
-  </div>
-
-<!-- 
+<!--
   <div class="d-flex justify-content-around">
     <div>
       <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
@@ -43,8 +42,8 @@
   </div>
 -->
 
-<!-- Sign in button -->
-<button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
+<!-- Login button -->
+<button mdbBtn color="info" block="true" class="my-4" type="submit" [disabled]="!f.valid" >Login</button>
 
 <!-- Register -->
 <p>Not a member?
@@ -53,7 +52,7 @@
 
 <!-- Social login -->
 <!--
-  <p>or sign in with:</p>
+  <p>or Login with:</p>
 
   <a type="button" class="light-blue-text mx-2">
     <mdb-icon fab icon="facebook"></mdb-icon>
@@ -71,11 +70,3 @@
 
 </form>
 <!-- Default form login -->
-
-<p>FORM DATA</p>
-<p>EMAIL : {{ user.email }} ; {{ user.email }}</p>
-<p>PASS : {{ user.password }} ; {{ user.password }}</p>
-<p>Role : {{ user.role }} ; {{ user.role }}</p>
-<br>
-<p>FORM VALID : {{ f.valid }}</p>
-<p>FORM_DATA : {{ f.value | json }}</p>
