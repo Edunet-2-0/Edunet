@@ -12,9 +12,9 @@ export class LoginComponent implements OnInit {
   selectedRole = this.roles[0];
   // User data object that will be sent to server
   user = {
-    email: '',
-    password: '',
-    role: ''
+    email: null,
+    password: null,
+    role: null
   };
 
   constructor() { }
