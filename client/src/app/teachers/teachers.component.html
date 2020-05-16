@@ -1,1 +1,35 @@
-<p>teachers works!</p>
+
+<!--Grid row-->
+<div class="row">
+
+  <!--Grid column-->
+  <div class="col-md-4 teacherDiv" *ngFor="let teacher of teachers">
+    <mdb-card>
+      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+        <!-- Card img -->
+        <mdb-card-img src={{teacher.photo}} alt="Card image cap">
+        </mdb-card-img>
+        <a>
+          <div class="mask"></div>
+        </a>
+      </div>
+      <!--Card content-->
+      <mdb-card-body>
+        <!--Title-->
+        <mdb-card-title>
+          <h4>{{teacher.first_name + ' ' + teacher.last_name}}</h4>
+        </mdb-card-title>
+
+        <!--Text-->
+        <mdb-card-text> {{teacher.email}}
+        </mdb-card-text>
+
+        <a [routerLink]='teacher.id' mdbBtn color="primary" mdbWavesEffect>Profile</a>
+      </mdb-card-body>
+    </mdb-card>
+    <!-- Card -->
+  </div>
+  <!--Grid column-->
+</div>
+<!--Grid row-->
+

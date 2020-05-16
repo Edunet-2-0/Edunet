@@ -1,1 +1,45 @@
-<p>teacher works!</p>
+<div class='row'>
+  <div class="col-md-3">
+    <!--Card-->
+    <mdb-card cascade="true">
+
+      <!--Card image-->
+      <div class="view view-cascade overlay waves-light" mdbWavesEffect>
+        <mdb-card-img [src]="data != null ? data.teacher.photo : ''"></mdb-card-img>
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+      <!--/Card image-->
+
+      <mdb-card-body cascade="true" class="text-center">
+        <!--Card content-->
+        <h4 class="card-title">
+          <strong>{{data ? data.teacher.first_name + ' ' +data.teacher.last_name: "na3rech"}}</strong>
+        </h4>
+        <h5>{{data ? data.teacher.email: "na3rech "}}</h5>
+
+      </mdb-card-body>
+      <!--/.Card content-->
+
+    </mdb-card>
+    <!--/.Card-->
+  </div>
+
+  <div class='col-md-6'>
+
+    <div class="list-group">
+      <a href="#" class="list-group-item active waves-light" mdbWavesEffect>
+        Delivered Courses
+      </a>
+      <div *ngFor="let course of data.course">
+        <a href="#" class="list-group-item list-group-item-action waves-light" mdbWavesEffect>{{course.title}}</a>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+

@@ -14,7 +14,7 @@ router
 
 router
     .route('/:id')
-    .get(app, handler.getTeacher)
+    .get(handler.getTeacher)
     .post(app, handler.postVideo);
 
  

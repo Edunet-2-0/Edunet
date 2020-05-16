@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 // Form handling module
 import { FormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
 // Importing Material Design Library
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
@@ -11,7 +12,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -30,12 +30,12 @@ import { FeatureTeachersComponent } from './feature-teachers/feature-teachers.co
 import { CreateCourseComponent } from './create-course/create-course.component';
 import { StudentLogComponent } from './student-log/student-log.component';
 import { TeacherLogComponent } from './teacher-log/teacher-log.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    
     LoginComponent,
     HomeComponent,
     RegisterComponent,
@@ -52,21 +52,21 @@ import { TeacherLogComponent } from './teacher-log/teacher-log.component';
     FeatureTeachersComponent,
     CreateCourseComponent,
     StudentLogComponent,
-    TeacherLogComponent
+    TeacherLogComponent,
+    DashboardComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
-    FormsModule   
-  
-  
-  
-  
+    FormsModule,
+    HttpClientModule,
   ],
+ 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

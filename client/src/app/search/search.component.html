@@ -1,1 +1,19 @@
 <p>search works!</p>
+<div class="row">
+  <div class="col-md-3 courseDiv" *ngFor="let data of data">
+    <mdb-card>
+      <mdb-card-img src="{{data.photo}}"> </mdb-card-img>
+      <div id='line'></div>
+      <mdb-card-body>
+
+        <mdb-card-title>
+          <h4>{{data.title}}</h4>
+        </mdb-card-title>
+
+        <mdb-card-text>{{data.description}}</mdb-card-text>
+        <a [routerLink]=[data.id] mdbBtn color="primary" mdbWavesEffect id={{data.id}}>See more </a>
+        <!-- <button (click)="goToCourse('/courses',course.id)">click</button> -->
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+</div>

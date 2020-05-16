@@ -1,18 +1,17 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent  {
-  number =0
+export class NavbarComponent implements OnInit  {
+  
   constructor() {
-    setInterval(()=>{
-      this.number++
-    },1000)
+    
    }
-
- 
+   ngOnInit(): void {
+  }
+  
 
 }
