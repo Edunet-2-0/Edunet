@@ -1,1 +1,18 @@
 <p>search-by-category works!</p>
+<div class="row">
+  <div *ngFor="let courseByCategory of selectedCategory" class="col-md-4 courseDiv">
+    <mdb-card>
+      <mdb-card-img src="{{courseByCategory.photo}}"></mdb-card-img>
+      <div id='line'></div>
+      <mdb-card-body>
+        <mdb-card-title>
+          <h4>{{courseByCategory.title}}</h4>
+        </mdb-card-title>
+        <mdb-card-text>{{courseByCategory.description}}</mdb-card-text>
+        <a [routerLink]="['/courses/',courseByCategory.id]" color="primary" id={{courseByCategory.id}} mdbBtn
+           mdbWavesEffect>See more
+        </a>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+</div>

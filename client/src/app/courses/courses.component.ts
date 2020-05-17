@@ -18,11 +18,9 @@ export class CoursesComponent implements OnInit {
   ) {}
 
   getAllCourses() {
-    return this.http.get(baseUrl).subscribe(
-      (data) => {
-        this.courses = data;
-      }
-      );
+    return this.http.get(baseUrl).subscribe((data) => {
+      this.courses = data;
+    });
   }
   ngOnInit(): void {
     this.getAllCourses();

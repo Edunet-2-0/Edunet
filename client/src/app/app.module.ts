@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// Form handling module
 import { FormsModule } from '@angular/forms';
-
+import {  ChatService } from './chat.service';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // Importing Material Design Library
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -35,6 +35,9 @@ import { FeatureTeachersComponent } from './feature-teachers/feature-teachers.co
 import { CreateCourseComponent } from './create-course/create-course.component';
 import { StudentLogComponent } from './student-log/student-log.component';
 import { TeacherLogComponent } from './teacher-log/teacher-log.component';
+import { ChatComponent } from './chat/chat.component';
+
+const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
 @NgModule({
   declarations: [
@@ -57,11 +60,14 @@ import { TeacherLogComponent } from './teacher-log/teacher-log.component';
     CreateCourseComponent,
     StudentLogComponent,
     TeacherLogComponent,
+    ChatComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    FormsModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
@@ -73,6 +79,7 @@ import { TeacherLogComponent } from './teacher-log/teacher-log.component';
         blacklistedRoutes: ['http://localhost:4200/auth/login']
       }
     }),
+    SocketIoModule.forRoot(config)
   ],
  
   providers: [
@@ -80,8 +87,10 @@ import { TeacherLogComponent } from './teacher-log/teacher-log.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    ChatService
   ],
   bootstrap: [AppComponent],
 })
+
 export class AppModule {}

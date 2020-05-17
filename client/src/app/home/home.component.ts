@@ -10,9 +10,7 @@ import { Component } from '@angular/core';
 export class HomeComponent {
  constructor(){}
 
+  // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
-   
   }
-
-  
 }
