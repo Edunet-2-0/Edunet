@@ -35,7 +35,7 @@ import { FeatureTeachersComponent } from './feature-teachers/feature-teachers.co
 import { CreateCourseComponent } from './create-course/create-course.component';
 import { StudentLogComponent } from './student-log/student-log.component';
 import { TeacherLogComponent } from './teacher-log/teacher-log.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CreateCourseComponent,
     StudentLogComponent,
     TeacherLogComponent,
-    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +74,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         blacklistedRoutes: ['http://localhost:4200/auth/login']
       }
     }),
+    AdminDashboardModule
   ],
  
   providers: [
