@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-
+import { JwtService } from '../services/auth/jwt.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -7,11 +7,13 @@ import { Component, OnInit} from '@angular/core';
 })
 export class NavbarComponent implements OnInit  {
   
-  constructor() {
-    
-   }
+  constructor(
+    private authService: JwtService
+  ) {}
    ngOnInit(): void {
   }
-  
+  logout(){
+    this.authService.logout();
+  }
 
 }

@@ -14,7 +14,7 @@ import {TeacherComponent} from './teacher/teacher.component';
 import {SearchComponent} from './search/search.component';
 
 const routes: Routes = [
-{path : '', component : HomeComponent},
+{path : '', component : HomeComponent, canActivate: [AuthGuard]},
 {path : 'courses/:id' , component : CourseComponent},
 {path : 'teachers' , component : TeachersComponent},
 {path : 'teachers/:id' , component : TeacherComponent},
@@ -25,7 +25,11 @@ const routes: Routes = [
 {path : 'search/:value', component: SearchComponent},
 {path : 'auth/login', component: LoginComponent},
 {path : 'auth/signup', component: RegisterComponent},
-{ path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) } 
+{ 
+  path: 'admin', 
+  loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+  canActivate: [AuthGuard]
+} 
 
 ];
 
