@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { JwtService } from '../services/auth/jwt.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +23,10 @@ export class RegisterComponent implements OnInit {
     teacherPosition: null,
     affiliatedUniversity: null
   };
-  constructor() { }
+  constructor(
+    private router: Router,
+    private authService: JwtService
+  ) { }
   ngOnInit(): void {
   }
   onSelectionChange(role): void {
@@ -30,5 +35,14 @@ export class RegisterComponent implements OnInit {
   onSubmit(f: NgForm): void {
     this.newUser.role = this.selectedRole;
     console.log(this.newUser);
+    this.authService.register(this.newUser)
+    .subscribe((res: any) => {
+      console.log('Signup successful');
+      // Save JWT access token to the browser's storage
+      localStorage.setItem('token', res.token);
+      // Upon successful res, direct user to home page
+      // this.currentUser = res;
+      this.router.navigate(['']);
+    })
   }
 }

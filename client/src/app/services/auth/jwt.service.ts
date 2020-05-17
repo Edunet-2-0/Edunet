@@ -20,8 +20,9 @@ export class JwtService {
     public router: Router,
   ) { }
   // User login handler
-  login(email: string, password: string) {
-    return this.httpClient.post<{token: string}>(loginUrl, {email, password})
+  login(user: object) {
+    console.log('User login req');
+    return this.httpClient.post<{token: string}>(loginUrl, user)
     .subscribe((res: any) => {
       // Save JWT access token to the browser's storage
       localStorage.setItem('token', res.token);
@@ -32,6 +33,7 @@ export class JwtService {
   }
   // New User register handler
   register(user: object): Observable<any> {
+    console.log('New User register req');
     return this.httpClient.post(registerUrl, user)
       .pipe(
         catchError(this.handleError)

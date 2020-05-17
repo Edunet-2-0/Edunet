@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { JwtService } from '../services/auth/jwt.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
     role: null
   };
 
-  constructor() { }
+  constructor(private authService: JwtService) { }
   ngOnInit(): void {}
 
   onSelectionChange(role: string): void {
@@ -27,5 +28,6 @@ export class LoginComponent implements OnInit {
   onSubmit(f: NgForm) {
     this.user.role = this.selectedRole;
     console.log(this.user);
+    this.authService.login(this.user);
   }
 }

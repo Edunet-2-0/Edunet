@@ -120,8 +120,8 @@ course.hasMany(video, {
   foreignKey: "courseId"
 });
 
-/*teacher.belongsTo(university);
-university.hasMany(teacher);*/
+// teacher.belongsTo(university);
+// university.hasMany(teacher);
 
 course.belongsTo(category);
 category.hasMany(course, {
@@ -129,24 +129,29 @@ category.hasMany(course, {
 });
 
 
-/*university.sync();*/
-student.sync();
-course.sync();
-video.sync();
-teacher.sync();
-category.sync()
-  .then(function () {
-    category.create({
-      name: 'Marketing'
-    });
-    category.create({
-      name: 'IT'
-    });
-    category.create({
-      name: 'Language'
-    });
-  });
-course_student.sync();
+// university.sync();
+student.sync()
+.then(() => {
+  return teacher.sync();
+})
+.then(() => {
+  return category.sync();
+})
+.then(() => {
+  return course.sync();
+})
+.then(() => {
+  return video.sync();
+})
+.then(() => {
+  return course_student.sync();
+})
+.then(() => {
+  console.log('Database created successfully !');
+})
+.catch(err => {
+  console.log(err);
+})
 
 /*module.exports.University = university;*/
 module.exports.Student = student;
