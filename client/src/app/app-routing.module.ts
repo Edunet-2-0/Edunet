@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+// Protected API urls' guard
+import { AuthGuard } from './helpers/auth/auth.guard'; // TODO : add guards
 
 import { HomeComponent } from './home/home.component';
 import { CoursesComponent } from './courses/courses.component';
@@ -22,7 +24,9 @@ const routes: Routes = [
 {path : 'register' , component : RegisterComponent},
 {path : 'form' , component : FormComponent},
 {path : 'admin',  component : DashboardComponent },
-{path: 'search/:value', component: SearchComponent}
+{path : 'search/:value', component: SearchComponent},
+{path : 'auth/login', component: LoginComponent},
+{path : 'auth/signup', component: RegisterComponent} 
 
 ];
 

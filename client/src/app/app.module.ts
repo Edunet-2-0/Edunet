@@ -3,9 +3,14 @@ import { NgModule } from '@angular/core';
 // Form handling module
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // Importing Material Design Library
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
+// HTTP request token attachment library
+import { JwtModule } from '@auth0/angular-jwt';
+// Authentication interceptor
+import { AuthInterceptor } from './helpers/auth/auth.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -64,9 +69,22 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MDBBootstrapModule.forRoot(),
     FormsModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => (localStorage.getItem('token')), // TODO : Maybe needs ES5 syntax
+        whitelistedDomains: ['localhost:4200'],
+        blacklistedRoutes: ['http://localhost:4200/auth/login']
+      }
+    }),
   ],
  
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
