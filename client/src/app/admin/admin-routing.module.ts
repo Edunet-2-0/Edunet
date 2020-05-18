@@ -14,6 +14,7 @@ import { Dashboard1Component } from './views/dashboards/dashboard1/dashboard1.co
 import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
+  { path: '', component: AdminComponent },
   { path: '', pathMatch: 'full', redirectTo: 'dashboards/v1' },
   { path: 'dashboards', children:
     [
