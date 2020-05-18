@@ -17,17 +17,17 @@ import {FeatureCategoryComponent} from './feature-category/feature-category.comp
 import {SearchByCategoryComponent} from './search-by-category/search-by-category.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'courses/:id', component: CourseComponent},
-  {path: 'teachers', component: TeachersComponent},
-  {path: 'teachers/:id', component: TeacherComponent},
-  {path: 'courses', component: CoursesComponent},
+  {path: '', component: HomeComponent},
+  {path: 'courses/:id', component: CourseComponent, canActivate: [AuthGuard]},
+  {path: 'teachers', component: TeachersComponent, canActivate: [AuthGuard]},
+  {path: 'teachers/:id', component: TeacherComponent, canActivate: [AuthGuard]},
+  {path: 'courses', component: CoursesComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'form', component: FormComponent},
-  {path: 'search/:val', component: SearchComponent},
-  {path: 'category', component: FeatureCategoryComponent},
-  {path: 'category/:name', component: SearchByCategoryComponent},
+  {path: 'form', component: FormComponent, canActivate: [AuthGuard]},
+  {path: 'search/:val', component: SearchComponent, canActivate: [AuthGuard]},
+  {path: 'category', component: FeatureCategoryComponent, canActivate: [AuthGuard]},
+  {path: 'category/:name', component: SearchByCategoryComponent, canActivate: [AuthGuard]},
   {path : 'auth/login', component: LoginComponent},
   {path : 'auth/signup', component: RegisterComponent},
   { 
