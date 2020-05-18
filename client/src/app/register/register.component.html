@@ -1,45 +1,95 @@
 <!-- Default form register -->
-    <form class="text-center border border-light p-5">
+    <form class="text-center border border-light p-5"
+          #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate
+    >
 
       <p class="h4 mb-4">Sign up</p>
 
       <div class="form-row mb-4">
         <div class="col">
           <!-- First name -->
-          <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+          <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name"
+                 name="firstName" [(ngModel)]="newUser.firstName" required
+          >
         </div>
         <div class="col">
           <!-- Last name -->
-          <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+          <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name"
+                 name="lastName" [(ngModel)]="newUser.lastName" required
+          >
         </div>
       </div>
 
       <!-- E-mail -->
-      <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+      <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail"
+             name="email" [(ngModel)]="newUser.email" required
+      >
 
       <!-- Password -->
-      <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+      <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock"
+             name="password" [(ngModel)]="newUser.password" required
+      >
       <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
         At least 8 characters and 1 digit
       </small>
 
       <!-- Phone number -->
-      <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+      <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock"
+             name="phone" [(ngModel)]="newUser.phone" required
+      >
       <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
         Optional - for two-step authentication
       </small>
 
-      <!-- Newsletter -->
-      <div class="row">
-        <div class="col-md-6 mx-auto d-flex justify-content-center">
-          <mdb-checkbox [default]="true">Subscribe to our newsletter</mdb-checkbox>
+
+      <!-- Role -->
+      <div *ngFor="let role of roles; let idx = index"
+           class="custom-control custom-radio"
+      >
+        <input name="role" type="radio" class="custom-control-input"
+               id="{{ role }}RadioButton"
+               [checked]="idx === 0"
+               [value]="role"
+               (change)="onSelectionChange(role)"
+               mdbInput
+        >
+        <label class="custom-control-label"
+               for="{{ role }}RadioButton">
+          {{ role }}
+        </label>
+      </div>
+
+      <!-- Teacher-relevant information -->
+      <div class="form-row mb-4"
+           [ngStyle]="{'display': (selectedRole === 'Teacher') ? 'grid' : 'none'}"
+      >
+        <div class="col">
+          <br>
+          <!-- Occupied position -->
+          <input type="text" id="teacherPosition" class="form-control" placeholder="Position"
+                 name="teacherPosition" [(ngModel)]="newUser.teacherPosition"
+          >
+        </div>
+        <div class="col">
+          <br>
+          <!-- Affiliated university -->
+          <input class="form-control" id="affiliatedUniversity" placeholder="University" type="text"
+                 name="affiliatedUniversity" [(ngModel)]="newUser.affiliatedUniversity"
+          >
         </div>
       </div>
 
       <!-- Sign up button -->
-      <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign Up</button>
+      <button mdbBtn color="info" block="true" class="my-4" type="submit">Register</button>
 
-      <!-- Social register -->
+      <!-- Login -->
+      <p>Already a member ?
+        <a routerLink="/auth/login" routerLinkActive="active">Login</a>
+      </p>
+
+      <!-- TODO
+
+      Social Register
       <p>or sign up with:</p>
 
       <a type="button" class="light-blue-text mx-2">
@@ -57,10 +107,12 @@
 
       <hr>
 
-      <!-- Terms of service -->
+
       <p>By clicking
         <em>Sign up</em> you agree to our
         <a href="" target="_blank">terms of service</a></p>
+
+      -->
 
     </form>
     <!-- Default form register -->
