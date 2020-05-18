@@ -10,8 +10,8 @@ exports.signUp = async(req, res, next) => {
     if(req.body.role === 'Teacher'){
       //var university = await db.University.findOrCreate({name : req.body.university});
       var teacher = await db.Teacher.create({
-        first_name : req.body.first,
-        last_name : req.body.last,
+        first_name : req.body.firstName,
+        last_name : req.body.lastName,
         email: req.body.email,
         password : hashedPassword,
         github : req.body.github,
