@@ -36,6 +36,7 @@ import { CreateCourseComponent } from './create-course/create-course.component';
 import { StudentLogComponent } from './student-log/student-log.component';
 import { TeacherLogComponent } from './teacher-log/teacher-log.component';
 import { ChatComponent } from './chat/chat.component';
+import { FooterComponent } from './footer/footer.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
@@ -61,6 +62,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     StudentLogComponent,
     TeacherLogComponent,
     ChatComponent,
+    FooterComponent,
   ],
 
   imports: [

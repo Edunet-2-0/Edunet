@@ -1,45 +1,50 @@
-<div class='row'>
-  <div class="col-md-3">
-    <!--Card-->
-    <mdb-card cascade="true">
-
-      <!--Card image-->
-      <div class="view view-cascade overlay waves-light" mdbWavesEffect>
-        <mdb-card-img [src]="data != null ? data.teacher.photo : ''"></mdb-card-img>
-        <a>
-          <div class="mask rgba-white-slight"></div>
-        </a>
+<div class="cont">
+  <!--Grid column-->
+  <div class="col-md-12">
+    <mdb-card class="testimonial-card">
+      <!--Bacground color-->
+      <div class="card-up indigo lighten-1">
       </div>
-      <!--/Card image-->
-
-      <mdb-card-body cascade="true" class="text-center">
-        <!--Card content-->
-        <h4 class="card-title">
-          <strong>{{data ? data.teacher.first_name + ' ' +data.teacher.last_name: "na3rech"}}</strong>
-        </h4>
-        <h5>{{data ? data.teacher.email: "na3rech "}}</h5>
-
+      <!--Avatar-->
+      <div class="avatar">
+        <img src="{{data.teacher.photo}}"
+             class="rounded-circle">
+        <span class='h3'>{{data.teacher.first_name +' '+ data.teacher.last_name}}
+              </span>
+        <div id="socialMedia" class="h4">
+          <a type="button" class="btn-floating btn-lg btn-tw"><i class="fab fa-twitter"></i></a>
+          <a type="button" class="btn-floating btn-lg btn-tw"><i class="fab fa-github"></i></a>
+          <a type="button" class="btn-floating btn-lg btn-tw"><i class="fab fa-linkedin"></i></a>
+          <a type="button" class="btn-floating btn-lg btn-tw"><i class="fab fa-slack"></i></a>
+        </div>
+      </div>
+      <!--<hr>-->
+      <mdb-card-body>
+        <p>
+          <mdb-icon fas icon="quote-left"> </mdb-icon>  
+        </p>
       </mdb-card-body>
-      <!--/.Card content-->
-
     </mdb-card>
-    <!--/.Card-->
   </div>
-
-  <div class='col-md-6'>
-
-    <div class="list-group">
-      <a href="#" class="list-group-item active waves-light" mdbWavesEffect>
-        Delivered Courses
-      </a>
-      <div *ngFor="let course of data.course">
-        <a href="#" class="list-group-item list-group-item-action waves-light" mdbWavesEffect>{{course.title}}</a>
-      </div>
+  </div>
+  <h2 class="h1-responsive font-weight-bold my-5">Courses</h2>
+  <!--<form class="form-inline md-form form-sm">
+    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search Course" aria-label="Search"
+           (change)="handleInput($event)" mdbInput>
+    <a fas icon="search" aria-hidden="true" mdbBtn (click)="Search(this.val)"></a>
+  </form>-->
+  <div class="row">
+    <div class="col-md-3 courseDiv" *ngFor="let course of data.course">
+      <mdb-card>
+        <mdb-card-img src="{{course.photo}}"> </mdb-card-img>
+        <div id='line'></div>
+        <mdb-card-body>
+          <mdb-card-title>
+            <h4>{{course.title}}</h4>
+          </mdb-card-title>
+          <mdb-card-text>{{course.description}}</mdb-card-text>
+          <a routerLink="/courses/{{course.id}}" mdbBtn color="primary" mdbWavesEffect id={{course.id}}>See more </a>
+        </mdb-card-body>
+      </mdb-card>
     </div>
-
-
   </div>
-</div>
-
-
-
