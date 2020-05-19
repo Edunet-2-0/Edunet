@@ -3,9 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {  ChatService } from './chat.service';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // Importing Material Design Library
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
+// HTTP request token attachment library
+import { JwtModule } from '@auth0/angular-jwt';
+// Authentication interceptor
+import { AuthInterceptor } from './helpers/auth/auth.interceptor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +35,6 @@ import { FeatureTeachersComponent } from './feature-teachers/feature-teachers.co
 import { CreateCourseComponent } from './create-course/create-course.component';
 import { StudentLogComponent } from './student-log/student-log.component';
 import { TeacherLogComponent } from './teacher-log/teacher-log.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChatComponent } from './chat/chat.component';
 import { FooterComponent } from './footer/footer.component';
 
@@ -57,7 +61,6 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     CreateCourseComponent,
     StudentLogComponent,
     TeacherLogComponent,
-    DashboardComponent,
     ChatComponent,
     FooterComponent,
   ],
@@ -69,11 +72,26 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     FormsModule,
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
+    FormsModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => (localStorage.getItem('token')), // TODO : Maybe needs ES5 syntax
+        whitelistedDomains: ['localhost:4200'],
+        blacklistedRoutes: ['http://localhost:4200/auth/login']
+      }
+    }),
     SocketIoModule.forRoot(config)
   ],
-
-  providers: [ChatService],
+ 
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    ChatService
+  ],
   bootstrap: [AppComponent],
 })
 

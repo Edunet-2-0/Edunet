@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { JwtService } from '../services/auth/jwt.service';
 import {SearchComponent} from '../search/search.component';
 
 @Component({
@@ -6,10 +7,15 @@ import {SearchComponent} from '../search/search.component';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit  {
   val = '';
-
-  constructor() {
+  constructor(
+    private authService: JwtService
+  ) {}
+   ngOnInit(): void {
+  }
+  logout(){
+    this.authService.logout();
   }
 
   handleSubmit() {
@@ -20,6 +26,4 @@ export class NavbarComponent implements OnInit {
     console.log(this.val)
   }
 
-  ngOnInit(): void {
-  }
 }
