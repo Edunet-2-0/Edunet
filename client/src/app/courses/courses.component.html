@@ -4,11 +4,9 @@
       <mdb-card-img src="{{course.photo}}"> </mdb-card-img>
       <div id='line'></div>
       <mdb-card-body>
-
         <mdb-card-title>
           <h4>{{course.title}}</h4>
         </mdb-card-title>
-
         <mdb-card-text>{{course.description}}</mdb-card-text>
         <a [routerLink]=[course.id] mdbBtn color="primary" mdbWavesEffect id={{course.id}}>See more </a>
         <!-- <button (click)="goToCourse('/courses',course.id)">click</button> -->

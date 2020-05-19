@@ -32,6 +32,7 @@ import { StudentLogComponent } from './student-log/student-log.component';
 import { TeacherLogComponent } from './teacher-log/teacher-log.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChatComponent } from './chat/chat.component';
+import { FooterComponent } from './footer/footer.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
@@ -58,6 +59,7 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     TeacherLogComponent,
     DashboardComponent,
     ChatComponent,
+    FooterComponent,
   ],
 
   imports: [

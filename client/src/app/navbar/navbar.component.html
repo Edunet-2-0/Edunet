@@ -1,8 +1,8 @@
 <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary" [containerInside]="false">
+<mdb-navbar id="nav"  SideClass="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" [containerInside]="false">
 
   <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="navbar-brand" routerLink="/">logo-here</a></mdb-navbar-brand>
+  <mdb-navbar-brand><a class="navbar-brand" routerLink="/"><img src=""></a></mdb-navbar-brand>
 
   <!-- Collapsible content -->
   <links>
@@ -33,8 +33,8 @@
     <links>
       <form class="form-inline waves-light waves-light ml-auto" mdbWavesEffect>
         <div class="md-form my-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" (change)="handleInput($event)">
-          <button routerLink ="search/{{this.val}}" mdbBtn color="success" outline="true" size="sm" class="my-0 waves-light" mdbWavesEffect><b>Search</b></button>
+          <input class="form-control mr-sm-2" type="text" placeholder="Search for courses ..." aria-label="Search" (change)="handleInput($event)">
+          <button mdbBtn routerLink ="search/{{this.val}}" type="button" class="btnsearch" size="sm"  mdbWavesEffect>search</button>
         </div>
       </form>
     </links>
@@ -45,11 +45,11 @@
           <div class="btn-group" mdbDropdown>
             <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
             <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-              <a class="dropdown-item" href="#">Your Account</a>
+              <a class="dropdown-item" href="#">Profil</a>
               <a class="dropdown-item" href="#">Register</a>
               <a class="dropdown-item" href="#">Login</a>
               <div class="divider dropdown-divider"></div>
-              <button mdbBtn type="button" color="danger" rounded="true" outline="true" mdbWavesEffect>Logout</button>
+              <button mdbBtn type="button" flat="true" size="sm" id="logout" mdbWavesEffect>logout</button>
             </div>
           </div>
         </a>

@@ -1,19 +1,14 @@
-/* tslint:disable:no-trailing-whitespace */
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CoursesComponent } from '../courses/courses.component';
-
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.scss'],
 })
 export class CourseComponent implements OnInit {
-
-
-
   constructor(
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
@@ -31,21 +26,17 @@ export class CourseComponent implements OnInit {
     course : {title : 'introduction to java', description: 'hello world welcome to java', photo: 'https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png'},
     videos: {url : '', description : '', title : ''}
   };
-
   course = [] as any;
   videos = [] as any;
-
   enroll(){}
   handleSubmit(){}
   handleInput(){}
-
   getCourse(id) {
     return this.http.get<any>(`http://localhost:8080/courses/${id}`);
   }
   transform(url) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
-
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params.id;
     this.getCourse(id).subscribe(

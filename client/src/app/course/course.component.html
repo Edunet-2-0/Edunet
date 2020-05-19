@@ -1,196 +1,64 @@
-<div>
+<div id='mainDiv'>
+  <div id="videoDiv">
+    <div *ngFor="let video of videos">
+      <div class="embed-responsive embed-responsive-16by9">
+        <div><iframe class="embed-responsive-item" [src]="transform(video.url)"></iframe></div>
+      </div>
+      <div class='h3'>{{video.title}} </div>
+      <div>
+        <p>{{video.description}}</p>
+      </div>
+    </div>
+  </div>
+  <div id='contentDiv'>
+    <!--Grid row-->
+    <div class="row">
+      <!--Grid column-->
+      <div class="col-md-12">
+        <mdb-card class="testimonial-card">
+          <!--Bacground color-->
+          <div class="card-up indigo lighten-1">
+          </div>
+          <!--Avatar-->
+          <div class="avatar">
+            <img src="https://www.livelingua.com/img/profilesTeachers/103/Guillaume-Deneufbourg-Square_Profile_S.jpg"
+              class="rounded-circle">
+            <span class='h3'>{{course.teacher.first_name +' '+ course.teacher.last_name}}
+            </span>
+            <div id="socialMedia" class="h4">
+              <a type="button" class="btn-floating btn-lg btn-tw"><i class="fab fa-twitter"></i></a>
+              <a class="icons-sm li-ic">
+                <mdb-icon fab icon="linkedin-in"></mdb-icon>
+              </a>
+              <a class="icons-sm slack-ic">
+                <mdb-icon fab icon="slack"></mdb-icon>
+              </a>
+              <a class="icons-sm git-ic">
+                <mdb-icon fab icon="github"></mdb-icon>
+              </a>
+            </div>
+          </div>
+          <hr>
+          <mdb-card-body>
+            <!-- <mdb-card-title>
+              <h4>{{course.course.title}}</h4>
+            </mdb-card-title> -->
+            <!--Quotation-->
+            <p>
+              <mdb-icon fas icon="quote-left"></mdb-icon> {{course.course.description}}
+            </p>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+      <!--Grid column-->
+    </div>
+  </div>
+  <div style="clear: both;"> </div>
+</div>
+<div id='chatDiv'>
   <app-chat></app-chat>
 </div>
-
-
-
-<div>
-  <div *ngIf="key !== null; then thenBlock else elseBlock"></div>
-  <ng-template #thenBlock>
-    <div *ngIf="role !== 'teacher'; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock>
-      <div *ngIf="exist == true; then thenBlock else elseBlock"></div>
-      <ng-template #thenBlock>
-        <div class = 'row'>
-          <div class='col-md-2'>
-            <button class='btn btn-warning mb-3' disabled>Enrolled</button>
-          </div>
-        </div>
-      </ng-template>
-      <ng-template #elseBlock>
-        <div class='row'>
-          <div class='col-md-2 mb-3'>
-            <button class='btn btn-success' (click)="enroll()">Enroll</button>
-          </div>
-        </div>
-      </ng-template>
-    </ng-template>
-    <ng-template #elseBlock></ng-template>
-  </ng-template>
-  <ng-template #elseBlock></ng-template>
-
-  <!--&lt;!&ndash;  {localStorage.getItem('token') === null ? ''
-                  : localStorage.getItem('role') === 'teacher' ? ''
-                  : this.state.exist === true ?
-                  <div className='row'>
-                      <div className='col-md-2'>
-                          <button className='btn btn-warning mb-3' disabled>Enrolled</button>
-                      </div>
-                  </div>
-                  :<div className='row'>
-                      <div className='col-md-2 mb-3'>
-                          <button className='btn btn-success' onClick={this.enroll.bind(this)}>Enroll</button>
-                      </div>
-                  </div>
-    }&ndash;&gt;-->
-
-  <div>
-    <ul class="nav nav-tabs mb-5">
-      <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#teacher">Teacher</a>
-      </li>
-
-      <div *ngIf="key !== null; then thenBlock else elseBlock"></div>
-      <ng-template #thenBlock>
-        <div *ngIf="exist !== false; then thenBlock else elseBlock"></div>
-        <ng-template #thenBlock>
-          <div *ngIf="role === 'teacher' && owner === false; then thenBlock else elseBlock"></div>
-          <ng-template #thenBlock></ng-template>
-          <ng-template #elseBlock>
-            <li className="nav-item">
-              <a className="nav-link" data-toggle="tab" href="#content">Content</a>
-            </li>
-          </ng-template>
-        </ng-template>
-        <ng-template #elseBlock></ng-template>
-      </ng-template>
-      <ng-template #elseBlock></ng-template>
-    </ul>
-    <!--   {localStorage.getItem('token') === null ? '' :
-                          this.state.exist === false ? '':
-                          localStorage.getItem('role') === 'teacher' && this.state.owner === false ?  '':
-                          <li className="nav-item">
-                             <a className="nav-link" data-toggle="tab" href="#content">Content</a>
-                         </li>
-       }-->
-
-    <div class="tab-content">
-      <div class="tab-pane container active" id="description">
-        <div class="container">
-          <img [src]="data === null ? '' : data.course.photo" class="card-img-top" alt="...">
-          <div>
-            <h3 class="descr">{{data !== null ? data.course.title: ''}}</h3>
-            <br><div class="bordure"></div><br>
-            <p class="desc">{{data !== null ? data.course.description: ''}}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-pane container fade" id="teacher">
-        <div class="card">
-          <img [src]="data !== null ? data.teacher.photo : ''" class="card-img-top rounded-circle" alt="...">
-          <div class="card-body">
-            <!--
-                        <routerLink =`/teacher/${this.state.data !== null ? this.state.data.teacher.id : ''}`>
-            -->
-            <h5 class="card-title">
-              {{data !== null ? (data.teacher.first_name + ' '+ data.teacher.last_name) : ''}}
-            </h5>
-            <p class="card-text">{{data !== null ? data.teacher.email : ''}}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-pane container fade" id="content">
-        <div *ngIf="role === 'student'; else elseBlock"></div>
-        <ng-template #elseBlock>
-          <div class='form-group'>
-            <div class='row'>
-              <div class='col-md-4'>
-                <h2>Add video</h2>
-              </div>
-            </div>
-            <div class='row' >
-              <div class='col-md-4'>
-                <input type='text' class='form-control mb-2' placeholder='Title' name='title' id='title' (change)="handleInput()"/>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-md-4'>
-                <input type='text-area' className='form-control mb-2' placeholder='description' id='desc' name='description' (change)="handleInput()"/>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-md-4'>
-                <input type='text' className='form-control mb-2' placeholder='URL' name='url' id='url' (change)="handleInput()" />
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-md-4 mb-5'>
-                <button className='btn btn-success' (click)="handleSubmit()">Upload</button>
-              </div>
-            </div>
-          </div>
-        </ng-template>
-        <!--
-         &lt;!&ndash;{
-         localStorage.getItem('role') === 'student' ? '' :
-         <div className='form-group'>
-             <div className='row'>
-                 <div className='col-md-4'>
-                     <h2>Add video</h2>
-                 </div>
-             </div>
-             <div className='row' >
-                 <div className='col-md-4'>
-                     <input type='text' className='form-control mb-2' placeholder='Title' name='title' id='title' onChange={this.handleInput.bind(this)}/>
-                                         </div>
-                                     </div>
-                                     <div className='row'>
-                                         <div className='col-md-4'>
-                                             <input type='text-area' className='form-control mb-2' placeholder='description' id='desc' name='description' onChange={this.handleInput.bind(this)}/>
-                                         </div>
-                                     </div>
-                                     <div className='row'>
-                                         <div className='col-md-4'>
-                                             <input type='text' className='form-control mb-2' placeholder='URL' name='url' id='url' onChange={this.handleInput.bind(this)}/>
-                                         </div>
-                                     </div>
-                                     <div className='row'>
-                                         <div className='col-md-4 mb-5'>
-                                             <button className='btn btn-success' onClick={this.handleSubmit.bind(this)}>Upload</button>
-                                         </div>
-                                     </div>
-                                 </div>
-         }&ndash;&gt;-->
-         <div class='row' *ngFor="let element of data.videos">
-           <div *ngIf="data === null; then thenBlock else elseBlock"></div>
-           <ng-template #thenBlock></ng-template>
-           <ng-template #elseBlock>
-             <div class='col-md-6 mb-3' >
-               <iframe width="420" height="345" [src]= "element.url">
-               </iframe>
-               <h4 class='h4'>{{element.title}}</h4>
-               <p class='font-weight-light'>{{element.description}}</p>
-             </div>
-           </ng-template>
-
-    <!--   &lt;!&ndash;    {this.state.data === null ? '': this.state.data.video.map((element, key)=>{
-           return(
-           <div className='col-md-6 mb-3' >
-             <iframe width="420" height="345" src={element.url}>
-             </iframe>
-             <h4 className='h4'>{element.title}</h4>
-             <p className='font-weight-light'>{element.description}</p>
-           </div>
-           )
-           })}
-         </>&ndash;&gt;
-       </div>
-     </div>
-   </div>
- </div> &ndash;&gt;-->
-
+<!-- <div>
+  <app-chat></app-chat>
+</div> -->
+<!---------------------------------------------->

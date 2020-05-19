@@ -3,16 +3,17 @@
 
 
 
+
 <!--Grid row-->
 <div class="row">
 
 
   <!--Grid column-->
-  <div *ngFor="let teacher of teachers" class="col-md-4 teacherDiv">
+  <div *ngFor="let teacher of teachers" class="col-md-3 ">
     <mdb-card>
       <div class="view rgba-white-slight waves-light" mdbWavesEffect>
         <!-- Card img -->
-        <mdb-card-img alt="Card image cap" src={{teacher.photo}}>
+        <mdb-card-img  alt="Card image cap" src={{teacher.photo}}>
         </mdb-card-img>
         <a>
           <div class="mask"></div>
@@ -37,3 +38,7 @@
   <!--Grid column-->
 </div>
 <!--Grid row-->
+
+
+
+
